@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import DataForm from "../DataForm";
 
 const SignUp = () => {
+  // useState to manage the state of a component
   const [step, setStep] = useState(1);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -10,6 +11,7 @@ const SignUp = () => {
   const [error, setError] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
+  // Event handlers for user's detail
   const handleNameChange = (event) => {
     setName(event.target.value);
     setError("");
@@ -30,6 +32,7 @@ const SignUp = () => {
     setError("");
   };
 
+  // this will take care of the steps and validate the inputs
   const handleContinue = () => {
     switch (step) {
       case 1:
@@ -57,6 +60,7 @@ const SignUp = () => {
     setStep(step + 1);
   };
 
+  // handle submit form details
   const handleSubmit = () => {
     // Save data to local storage
     localStorage.setItem("formData", JSON.stringify({ name, email, message }));
@@ -65,6 +69,7 @@ const SignUp = () => {
     setSubmitted(true);
   };
 
+  // validate the email
   const validateEmail = (email) => {
     const re = /\S+@\S+\.\S+/;
     return re.test(email);
@@ -72,10 +77,12 @@ const SignUp = () => {
 
   return (
     <div className="App">
+      {/* check if step is between 1 and 3 */}
       {step == 0 ? "" : <h2>Step - {step}</h2>}
       <div className="signup-container">
         {submitted ? (
           <>
+            {/* after submitting the data  */}
             <h2>Filled detail </h2>
             <div>
               <DataForm />
@@ -83,6 +90,7 @@ const SignUp = () => {
           </>
         ) : (
           <>
+            {/* otherwise this will display to take user's details */}
             <h2>Sign Up</h2>
             {step === 1 && (
               <div className="wrapper">
@@ -117,14 +125,18 @@ const SignUp = () => {
             )}
             {error && <p className="error">{error}</p>}
             <div>
+              {/* if step is below continue button will display */}
               {step < 3 ? (
                 <button className="btn" onClick={handleContinue}>
                   Continue
                 </button>
               ) : (
-                <button className="btn" onClick={handleSubmit}>
-                  Submit
-                </button>
+                <>
+                  {/* after 3rd step submit button will display */}
+                  <button className="btn" onClick={handleSubmit}>
+                    Submit
+                  </button>
+                </>
               )}
             </div>
           </>

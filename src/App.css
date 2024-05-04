@@ -72,14 +72,14 @@ header a {
 
 .signup-container textarea {
   width: 230px;
-  max-width: 230px; /* Set a maximum width if needed */
+  max-width: 230px;
   padding: 0.5rem 1rem;
   font-size: 1rem;
   font-weight: 600;
   border-radius: 3px;
   color: #000;
-  box-sizing: border-box; /* Ensure padding is included in the width */
-  margin-bottom: 0.5rem; /* Add some space between elements */
+  box-sizing: border-box;
+  margin-bottom: 0.5rem;
   overflow: auto;
 }
 
